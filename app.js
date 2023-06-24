@@ -23,7 +23,7 @@ let colors = ["#2a9d8f", "#d62828", "#ffae12", "#F91B78", "#9163CB"];
 const myChart = new Chart(ctx, {
   type: "bar",
   data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple"],
+    labels: ["Income", "Personal Expense", "Travelling", "Household", "Assets"],
     datasets: [
       {
         label: "Expenses",
