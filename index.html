@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Expense Tracker</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="/wallet.png" type="image/png">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -15,25 +16,26 @@
 
   <body>
     <div class="chart-container d-flex-c mt-5">
-      <h1 class="mb-5">Expense Tracker</h1>
+      <h1 class="heading mb-5">Expense Tracker</h1>
       <div class="chart_js_container d-flex">
         <canvas class="chart-js" id="myChart"></canvas>
       </div>
     </div>
-    <div class="expense-container d-flex-c w-100 mt-5 p-5">
-      <h2 class="mb-5">Add Expense</h2>
-      <div class="input_container mb-5">
+    <div class="expense-container d-flex-c w-100 mt-5">
+      <h2 class="sub-heading mb-5">Add Expense</h2>
+      <div class="input_container d-flex flex-column flex-md-row mb-5">
+        
         <input
-          class="input-type-1 number-input"
+          class="input-type-1 number-input me-0 me-md-4 mb-4 mb-md-0"
           type="number"
-          placeholder="add expense"
+          placeholder="Amount"
           name=""
           id=""
         />
         <input
-          class="input-type-1 text-input"
+          class="input-type-1 text-input "
           type="text"
-          placeholder="text"
+          placeholder="Expense"
           name=""
           id=""
         />
@@ -53,7 +55,7 @@
 
         <label class="radio-button-label">
           <input type="radio" name="option" value="1" />
-          <span>Personal expense</span>
+          <span>Personal Expense</span>
         </label>
 
         <label class="radio-button-label">
@@ -69,10 +71,10 @@
           <span>Assets</span>
         </label>
       </div>
-      <button class="custom-buttons submit">Submit</button>
+      <button class="custom-buttons my-5 submit">Submit</button>
     </div>
+    <h2 class="sub-heading mb-4 text-center">Your Expenses</h2>
     <div class="show-expense-container d-flex-c">
-        <h2>Your Expenses herre</h2>
       <!-- <div class="expense d-flex-r">
         <div class=" expense-num">234</div>
         <div class=" expense-text">pizza</div>
