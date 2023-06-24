@@ -6,9 +6,17 @@
   font-family: sans-serif;
 }
 
-h1 {
-  margin: 4rem 0;
-  font-size: 4rem;
+body{
+    background-image: url('/money_bg.png');
+    background-size: cover;
+    padding-bottom: 3rem;
+}
+
+.heading {
+  margin: 0rem 0 4rem 0;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #003049;
 }
 
 .chart_js_container {
@@ -75,16 +83,34 @@ h1 {
   padding: 0.4rem 0.4rem;
 }
 
+
+
+
+
+.radio-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+
+
 .radio-button-label {
   display: inline-block;
-  margin-right: 10px;
+  margin: .6rem 1.2rem .6rem 0;
   background-color: #ccc;
   border-radius: 4px;
   border: none;
   cursor: pointer;
-  padding: .5rem 0;
   color: #fff;
+  text-align: center;
+  width: 20rem;
 }
+
+
 
 .radio-button-label:nth-of-type(1){
     background-color: #2a9d8f;
@@ -109,8 +135,11 @@ h1 {
 
 .radio-button-label span {
     border-radius: 4px;
-  padding: 1rem 4rem;
+  padding: .8rem 1rem;
   font-size: 2rem;
+  width: 20rem !important;
+  display: inline-block;
+
 }
 
 .radio-button-label input[type="radio"]:checked + span {
@@ -123,7 +152,7 @@ h1 {
     align-items: center;
     flex-direction: row;
     padding: .5rem 2rem;
-    margin: 1.2rem;
+    margin-bottom: 1.2rem;
     border-radius: .4rem;
     color: #fff;
     width: 20rem;
@@ -138,4 +167,33 @@ h1 {
 
 .expense-text{
     font-size: 1.8rem;
+}
+
+.submit{
+    border: none;
+    width: 20rem;
+    border-radius: .4rem;
+    font-size: 1.8rem;
+    background-color: #023047;
+    
+}
+
+.show-expense-container{
+    flex-direction: column-reverse;
+}
+
+@media (max-width:500px) {
+    .radio-button-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .radio-button-label{
+        margin-right: 0 !important;
+
+    }
+    .chart_js_container {
+        width: 98%;
+      }
+    
 }
