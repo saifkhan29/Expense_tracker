@@ -172,7 +172,7 @@ function createExpense(number, text, colorCode) {
   create_num_div.classList.add("expense-num");
   create_num_div.innerText = number;
   delete_icon = document.createElement("img");
-  delete_icon.src = "/delete.png";
+  delete_icon.src = "https://user-images.githubusercontent.com/79800224/248540537-dea37626-a00d-402b-b006-922e355d7f24.png";
   delete_icon.classList.add("delete-icon");
   create_expense_cont.append(create_num_div, create_text_div, delete_icon);
   delete_btn_handler();
