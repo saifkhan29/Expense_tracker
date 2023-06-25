@@ -6,10 +6,11 @@
   font-family: sans-serif;
 }
 
-body{
-    background-image: url('https://user-images.githubusercontent.com/79800224/248507500-0b3bb179-15c7-4a80-a178-1b2268673d42.png');
-    background-size: cover;
-    padding-bottom: 3rem;
+body {
+  background-image: url("/money_bg.png");
+  background-size: cover;
+  padding-bottom: 3rem;
+  position: relative;
 }
 
 .heading {
@@ -83,24 +84,17 @@ body{
   padding: 0.4rem 0.4rem;
 }
 
-
-
-
-
-.radio-button-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
+.radio-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-
-
-
 
 .radio-button-label {
   display: inline-block;
-  margin: .6rem 1.2rem .6rem 0;
+  margin: 0.6rem 1.2rem 0.6rem 0;
   background-color: #ccc;
   border-radius: 4px;
   border: none;
@@ -110,90 +104,146 @@ body{
   width: 20rem;
 }
 
-
-
-.radio-button-label:nth-of-type(1){
-    background-color: #2a9d8f;
+.radio-button-label:nth-of-type(1) {
+  background-color: #2a9d8f;
 }
-.radio-button-label:nth-of-type(2){
-    background-color: #d62828;
+.radio-button-label:nth-of-type(2) {
+  background-color: #d62828;
 }
-.radio-button-label:nth-of-type(3){
-    background-color: #ffae12;
+.radio-button-label:nth-of-type(3) {
+  background-color: #ffae12;
 }
-.radio-button-label:nth-of-type(4){
-    background-color: #f91b78;
+.radio-button-label:nth-of-type(4) {
+  background-color: #f91b78;
 }
-.radio-button-label:nth-of-type(5){
-    background-color: #9163cb;
+.radio-button-label:nth-of-type(5) {
+  background-color: #9163cb;
 }
-
 
 .radio-button-label input[type="radio"] {
-    display: none;
+  display: none;
 }
 
 .radio-button-label span {
-    border-radius: 4px;
-  padding: .8rem 1rem;
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
   font-size: 2rem;
   width: 20rem !important;
   display: inline-block;
-
 }
 
 .radio-button-label input[type="radio"]:checked + span {
   background-color: #515151;
 }
 
-.expense{
+.expense {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  padding: 0.5rem 1.2rem;
+  margin-bottom: 1.2rem;
+  border-radius: 0.4rem;
+  color: #fff;
+  width: 20rem;
+  max-width: 20rem;
+  font-weight: 500;
+}
+
+.expense-num {
+  font-size: 1.8rem;
+  margin-right: 1rem;
+}
+
+.expense-text {
+  font-size: 1.8rem;
+  margin-right: 0.3rem;
+}
+
+.submit {
+  border: none;
+  width: 20rem;
+  border-radius: 0.4rem;
+  font-size: 1.8rem;
+  background-color: #023047;
+}
+
+.show-expense-container {
+  flex-direction: column-reverse;
+}
+
+.delete-icon {
+  display: flex;
+  width: 1.2rem;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.popup-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  left: 0;
+  top: 0;
+}
+
+.popup-card-cont {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  background-color: #fefefe;
+  height: 15rem;
+  border-radius: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.custom-button-1 {
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.6rem;
+  background-color: #415a77;
+  color: #fff;
+  font-weight: bold;
+  margin: 1rem 1rem 0 1rem;
+  transition: all 0.1s ease;
+  width: 10rem;
+}
+
+.custom-button-1:active {
+  transform: scale(0.95);
+}
+
+.hide {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .radio-button-container {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: row;
-    padding: .5rem 2rem;
-    margin-bottom: 1.2rem;
-    border-radius: .4rem;
-    color: #fff;
-    width: 20rem;
-    max-width: 20rem;
-    font-weight: 500;
+    flex-direction: column;
+  }
+
+  .radio-button-label {
+    margin-right: 0 !important;
+  }
+  .chart_js_container {
+    width: 98%;
+  }
+
+ 
 }
 
-.expense-num{
-    font-size: 1.8rem;
-    margin-right: 1rem;
-}
+@media (max-width: 700px){
+  .popup-card-cont {
+    width: 90%;
+    background-color: #fefefe;
+    height: 15rem;
+  }
 
-.expense-text{
-    font-size: 1.8rem;
-}
-
-.submit{
-    border: none;
-    width: 20rem;
-    border-radius: .4rem;
-    font-size: 1.8rem;
-    background-color: #023047;
-    
-}
-
-.show-expense-container{
-    flex-direction: column-reverse;
-}
-
-@media (max-width:500px) {
-    .radio-button-container{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .radio-button-label{
-        margin-right: 0 !important;
-
-    }
-    .chart_js_container {
-        width: 98%;
-      }
-    
 }
