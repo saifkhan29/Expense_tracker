@@ -5,8 +5,15 @@ const show_expense_container = document.querySelector(
   ".show-expense-container"
 );
 const input_type = document.querySelectorAll(".radio-button-label input");
-const submit_btn = document.querySelector(".submit");
+const submit_btn = document.querySelector(".submit_main");
 const ctx = document.getElementById("myChart").getContext("2d");
+const popup_container = document.querySelector(".popup-container");
+const popup_yes_btn = document.querySelector(".button-container .yes");
+const popup_no_btn = document.querySelector(".button-container .no");
+const clear_data_btn = document.querySelector(".clear-data-btn");
+const clear_data_cont = document.querySelector(".clear-data-cont");
+const clear_yes_btn = document.querySelector(".clear-data-cont .clear_yes");
+const clear_no_btn = document.querySelector(".clear-data-cont .clear_no");
 
 // Data variables
 let income_num = 0;
@@ -18,6 +25,8 @@ let colorCode;
 let expense_item_num;
 let expense_container = [];
 let colors = ["#2a9d8f", "#d62828", "#ffae12", "#F91B78", "#9163CB"];
+let delete_btn;
+let current_idx_delete;
 
 // Chart object
 const myChart = new Chart(ctx, {
@@ -33,7 +42,7 @@ const myChart = new Chart(ctx, {
           "#ffae12",
           "#F91B78",
           "#9163CB",
-          "rgba(255, 159, 64, 0.2)"
+          "rgba(255, 159, 64, 0.2)",
         ],
         borderColor: [
           "#2a9d8f",
@@ -41,19 +50,19 @@ const myChart = new Chart(ctx, {
           "#ffae12",
           "#F91B78",
           "#9163CB",
-          "rgba(255, 159, 64, 1)"
+          "rgba(255, 159, 64, 1)",
         ],
-        borderWidth: 1
-      }
-    ]
+        borderWidth: 1,
+      },
+    ],
   },
   options: {
     scales: {
       y: {
-        beginAtZero: true
-      }
-    }
-  }
+        beginAtZero: true,
+      },
+    },
+  },
 });
 
 // Event Listeners
@@ -64,23 +73,64 @@ input_type.forEach((input) => {
 });
 
 submit_btn.addEventListener("click", () => {
-  let expense_object = {
-    text: text_input.value,
-    number: number_input.value,
-    colorCode: colors[expense_item_num],
-    expense_item: expense_item_num
-  };
-  expense_container.push(expense_object);
-  console.log(expense_container);
+  if (number_input.value > 0 && text_input.value.length > 0) {
+    let expense_object = {
+      text: text_input.value,
+      number: number_input.value,
+      colorCode: colors[expense_item_num],
+      expense_item: expense_item_num,
+    };
+    expense_container.push(expense_object);
 
-  createExpense(number_input.value, text_input.value, colors[expense_item_num]);
+    createExpense(
+      number_input.value,
+      text_input.value,
+      colors[expense_item_num]
+    );
+    setLocalStorage();
+
+    clearValues();
+
+    // Update chart
+    updateChartData();
+  }
+});
+
+popup_no_btn.addEventListener("click", () => {
+  popup_container.classList.add("hide");
+});
+
+popup_yes_btn.addEventListener("click", () => {
+  expense_container = expense_container.filter((expenses, idx) => {
+    if (idx != current_idx_delete) {
+      return expenses;
+    }
+  });
+  console.log(expense_container);
+  let expenses = document.querySelectorAll(".expense");
+  expenses[current_idx_delete].remove();
+  popup_container.classList.add("hide");
+  setLocalStorage();
+});
+
+clear_data_btn.addEventListener("click", () => {
+  clear_data_cont.classList.remove("hide");
+});
+
+clear_no_btn.addEventListener("click", () => {
+  clear_data_cont.classList.add("hide");
+});
+clear_yes_btn.addEventListener("click", () => {
+  localStorage.removeItem("local_storage_expense");
+  let expenses = document.querySelectorAll(".expense");
+  expenses.forEach((expense) => expense.remove());
+  clear_data_cont.classList.add("hide");
+});
+
+function setLocalStorage() {
   let local_storage_expense = JSON.stringify(expense_container);
   localStorage.setItem("local_storage_expense", local_storage_expense);
-  clearValues();
-
-  // Update chart
-  updateChartData();
-});
+}
 
 function showLocalStorageData() {
   let local_storage_expenses = localStorage.getItem("local_storage_expense");
@@ -91,7 +141,23 @@ function showLocalStorageData() {
     expense_container.forEach((expense) => {
       createExpense(expense.number, expense.text, expense.colorCode);
     });
+    delete_btn_handler();
   }
+}
+
+function delete_btn_handler() {
+  delete_btn = document.querySelectorAll(".delete-icon");
+  delete_btn.forEach((btn, idx) => {
+    btn.addEventListener("click", () => {
+      console.log("delete btn clicked");
+      current_idx_delete = idx;
+      popup_container.classList.remove("hide");
+    });
+  });
+  // delete_btn.addEventListener('click', () => {
+  //   console.log('delete btn clicked')
+  //   popup_container.classList.remove('hide')
+  // })
 }
 
 function createExpense(number, text, colorCode) {
@@ -105,7 +171,11 @@ function createExpense(number, text, colorCode) {
   const create_num_div = document.createElement("div");
   create_num_div.classList.add("expense-num");
   create_num_div.innerText = number;
-  create_expense_cont.append(create_num_div, create_text_div);
+  delete_icon = document.createElement("img");
+  delete_icon.src = "/delete.png";
+  delete_icon.classList.add("delete-icon");
+  create_expense_cont.append(create_num_div, create_text_div, delete_icon);
+  delete_btn_handler();
 }
 
 function clearValues() {
@@ -157,7 +227,7 @@ function updateChartData() {
       personal_num,
       travel_num,
       household_num,
-      assets_num
+      assets_num,
     ];
   });
   myChart.update();
